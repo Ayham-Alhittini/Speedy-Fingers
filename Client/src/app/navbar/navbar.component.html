@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg mb-5" style="background-color: #000;">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">
+        <img src="/assets/logo.png" alt="logo image" class="img-fluid">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li style="color: #fff;">Improve your Typing Speed</li>
+        </ul>
+        <div class="d-flex" *ngIf="(accountService?.loadedUser | async)">
+            <a routerLink="/profile" class="btn btn-link">
+              {{(accountService.loadedUser | async)?.username}}
+            </a>
+            <a class="btn btn-link" (click)="accountService.logout()">
+              Logout
+            </a>
+          </div>
+        </div>
+        <a routerLink="/login" *ngIf="!(accountService.loadedUser | async)">
+          Login / Create
+        </a>
+    </div>
+</nav>

@@ -1,0 +1,72 @@
+<div class="d-flex" *ngIf="!loading">
+    <app-competition-typing-test *ngIf="!compititionFinshed" class="me-4" [words]="competition.words" (competition-result)="getCompetitionResult($event)" ></app-competition-typing-test>
+    <div [ngStyle]="{'width': compititionFinshed ? '60vw' : '20vw'}">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </symbol>
+        </svg>
+        <div *ngIf="!compititionFinshed && !user" class="alert alert-danger d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+            <div>
+                <a routerLink="/login">Login</a> to save your score
+            </div>
+        </div>
+        
+        
+        <div class="card">
+            <div *ngIf="!compititionFinshed" class="card-header d-flex text-light justify-content-between" style="background-color: #428bca;">
+              <p>Competition ends in: </p>
+              <p><countdown #cd [config]="{leftTime: getTime()}" (event)="handleCountDown($event)"></countdown></p>
+            </div>
+            <div *ngIf="compititionFinshed" class="card-header d-flex text-light justify-content-between" style="background-color: red;">
+              <strong>Competition finshed</strong>
+              <p>Next Competition : <countdown #cd [config]="{leftTime: getTime()}" (event)="handleCountDown($event)"></countdown></p>
+            </div>
+            <div class="card-body" style="padding: 10px;">
+                <div class="text-center" style="background-color: #eee; font-size: 16.8px; padding: 10px;">
+                    {{competition.testsTaken}} {{competition.testsTaken > 1 ? 'tests' : 'test'}} taken by {{competition.users.length}} {{competition.users.length > 1 ? 'competitors' : 'competitor'}}
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Username</th>
+                            <th>WPM</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let rank of competition.users; let idx = index">
+                            <td class="rank"><span 
+                                
+                                [class.rank-1]="idx === 0"
+                                [class.rank-2]="idx === 1"
+                                [class.rank-3]="idx === 2"
+                                [class.rank-4]="idx === 3"
+                                [class.rank-5]="idx === 4"
+                                
+                                
+                                class="rank-general">{{idx + 1}}</span></td>
+
+
+                            <td class="username">{{rank.userName}}</td>
+                            <td class="wpm">{{rank.wpm}}</td>
+                            <td style="color: #999;">({{rank.keystrokes}})</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                Can you type faster than your friends? Everybody gets the same text and only your highest score counts, try to reach the first place before the competition ends.
+            </div>
+          </div>
+    </div>
+</div>

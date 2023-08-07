@@ -1,0 +1,67 @@
+.words {
+    border: 1px solid rgba(0, 140, 255, 0.671);
+    border-radius: 3px;
+    padding: 10px;
+    width: 900px;
+    height: 120px;
+    background-color: white;
+}
+
+/* Warning if these values changed you need to update the function getLengthInPixels */
+.words p {
+    /* margin-right: 5px; */
+    font-size: 30.8px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 525;
+    padding: 2px 4px 2px 4px;
+    margin-top: -2px;
+    margin-bottom: 0;
+}
+
+.current-word {
+    background-color: #dddd;
+    border-radius: 3px;
+}
+#timer {
+    color: #fff;
+    background-color: #3C4D5C;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 0 8px 0 8px;
+    align-items: center;
+}
+
+#user-input {
+    background-color: #A7C8E7;
+    padding: 4px;
+    border-radius: 3px;
+    width: 900px;
+}
+#user-input input {
+    border-top: 3px solid #3C4D5C;
+    border-left: 3px solid #3C4D5C;
+    
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 525;
+}
+
+#result-container {
+    margin-top: 20px;
+    border-radius: 3px;
+    border: 2px solid #4d7f9f;
+    width: 30%;
+}
+
+#result-heading {
+    background-color: #4d7f9f;
+    color: #fff;
+}
+#wpm strong{
+    color: green;
+    font-size: 36px;
+}
+
+#refresh {
+    padding: 0 15px 0 15px;
+}

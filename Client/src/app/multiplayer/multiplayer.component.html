@@ -1,0 +1,25 @@
+<div class="board">
+
+    <div class="row">
+        <div class="col-7 mb-5">
+            <input type="search" class="form-control" (input)="onSearchInputChange($event.target)">
+        </div>
+        <div class="col-3">
+            <button class="btn btn-info">auto-match</button>
+        </div>
+    </div>
+    <div class="row">
+        
+        <div class="col-4">
+            <ul class="list-group">
+                <li class="list-group-item mb-2" *ngFor="let member of onlineUsers">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>{{member}}</span>
+                        <button class="btn btn-primary" (click)="sendInvite(member)">Invite</button>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>

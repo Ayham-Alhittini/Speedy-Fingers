@@ -1,0 +1,14 @@
+.board {
+    width: 30vw;
+    min-height: 40vh;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+}
+.list-group-item {
+    border: 1px solid;
+    background-color: rgba(0, 140, 255, 0.315);
+}
+input {
+    border: 1px solid;
+}

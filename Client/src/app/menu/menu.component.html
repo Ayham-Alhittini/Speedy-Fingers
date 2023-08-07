@@ -1,0 +1,42 @@
+<dl class="list-group" *ngIf="wordsGeneratorService.activeIndex !== 3">
+    <div class="list-group-item d-flex" [class.active]="wordsGeneratorService.activeIndex === 1" routerLink="/typing-test" (click)="setIndex(1)">
+        <div class="me-2">
+            <i class="fa-solid fa-play"></i>
+        </div>
+        <div>
+            <dt>Typing Test</dt>
+            <dd>Top 200 words</dd>
+        </div>
+    </div>
+
+    <div class="list-group-item d-flex" [class.active]="wordsGeneratorService.activeIndex === 2" routerLink="/advance-typing-test" (click)="setIndex(2)">
+        <div class="me-2">
+            <i class="fa-solid fa-forward"></i>
+        </div>
+        <div>
+            <dt>Typing Test (advanced)</dt>
+            <dd>Complex words</dd>
+        </div>
+    </div>
+
+    <div class="list-group-item d-flex" [class.active]="wordsGeneratorService.activeIndex === 3" routerLink="/multiplayer" (click)="setIndex(3)">
+        <div class="me-2">
+            <i class="fa-solid fa-users"></i>
+        </div>
+        <div>
+            <dt>Multiplayer Typing Test</dt>
+            <dd>Play against others</dd>
+        </div>
+    </div>
+
+    <div class="list-group-item d-flex" [class.active]="wordsGeneratorService.activeIndex === 4" routerLink="/competition" (click)="setIndex(4)">
+        <div class="me-2">
+            <i class="fa-solid fa-trophy"></i>
+        </div>
+        <div>
+            <dt>Typing Competition</dt>
+            <dd>Who can type the fastest?</dd>
+        </div>
+    </div>
+</dl>
+  

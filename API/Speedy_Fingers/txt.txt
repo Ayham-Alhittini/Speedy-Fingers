@@ -1,0 +1,17 @@
+when create a group give it the words and send to the caller the given words
+
+
+when game end or one of them leaving delete the group with it's words
+
+
+so when game end make them out of hub and delete data "Groups and Connections"
+
+
+
+/////////////////
+
+another solution
+*once connected if group already have connections 
+then send for it's connections the words
+
+*otherwise dont

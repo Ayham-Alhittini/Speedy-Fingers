@@ -1,0 +1,36 @@
+.table-striped>tbody>tr:nth-child(odd)>td{
+ background-color: #ffffff;
+}
+td.rank {
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+}
+td {
+    vertical-align: middle;
+    border-top: 1px solid #ddd;
+}
+.rank-general {
+    padding: 5px 8px 5px 8px;
+    border-radius: 3px;
+    background-color: #FFbb00;
+}
+.rank-1 {
+    background-color: #FF5500;
+}
+.rank-2 {
+    background-color: #FF7700;
+}
+.rank-3 {
+    background-color: #FF8800;
+}
+.rank-4 {
+    background-color: #FF9900;
+}
+.rank-5 {
+    background-color: #FFaa00;
+}
+
+.username, .wpm {
+    font-weight: 500;
+}

@@ -1,0 +1,15 @@
+nav .container {
+    padding: 10px;
+}
+a {
+    color: #eee;
+}
+
+img {
+    width: 165px;
+    height: auto;
+}
+
+.container-fluid {
+    padding: 0px 200px 0 200px;
+}

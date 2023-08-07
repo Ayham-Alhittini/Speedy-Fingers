@@ -1,0 +1,107 @@
+<div id='auth'>
+	<tabset #authTabs>
+		<tab heading="Login" (selectTab)="onTabActivaited($event)">
+            
+            <form #loginForm="ngForm" (ngSubmit)="loginSubmit(loginForm)">
+                <h3>Email Login</h3>
+                <div class="col-sm-6">
+                    <hr>
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Username/Email</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="loginProvider" ngModel class="form-control" id="exampleFormControlInput1">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputPasswordLogin" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-6">
+                        <input type="password" name="password" ngModel class="form-control" id="inputPasswordLogin">
+                    </div>
+                </div>
+
+                <button class="btn btn-info d-block mb-3" type="submit">Login</button>
+
+                <a href="#">Forgot your Password?</a>
+            </form>
+		</tab>
+
+
+
+		<tab heading="Create account" (selectTab)="onTabActivaited($event)">
+            <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
+                <h3>Create an account</h3>
+                <div class="col-sm-6">
+                    <hr>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <div class="col-sm-6">
+                        <input type="email" class="form-control" formControlName="email" email [class.is-invalid]="registerForm.controls['email'].invalid && submited">
+                        <div class="invalid-feedback" *ngIf="registerForm.controls['email'].hasError('required')">Email required</div>
+                        <div class="invalid-feedback" *ngIf="registerForm.controls['email'].hasError('email')">Not correct email format</div>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="col-sm-2 col-form-label">Username</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" formControlName="username" [class.is-invalid]="registerForm.controls['username'].invalid && submited">
+                        <div class="invalid-feedback" *ngIf="registerForm.controls['username'].hasError('required')">Username required</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-6">
+                        <input type="{{passwordShown ? 'text' : 'password'}}" class="form-control" formControlName="password" [class.is-invalid]="registerForm.controls['password'].invalid && submited">
+                        <div class="invalid-feedback" *ngIf="registerForm.controls['password'].hasError('required')">Password required</div>
+                        <div class="invalid-feedback" *ngIf="registerForm.controls['password'].hasError('pattern')">Weak Password</div>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="col-sm-2 col-form-label">Confirm Password</label>
+                    <div class="col-sm-6">
+                        <input type="{{passwordShown ? 'text' : 'password'}}" class="form-control" formControlName="confirmPassword" [class.is-invalid]="registerForm.controls['confirmPassword'].invalid && submited">
+                        <div class="invalid-feedback" *ngIf="registerForm.controls['confirmPassword'].hasError('required')">Confiram password required</div>
+                        <div class="invalid-feedback" *ngIf="registerForm.controls['confirmPassword'].hasError('notMatching')">Not mattching</div>
+                    </div>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" (change)="showPaswords()" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Show Password
+                    </label>
+                </div>
+                <button class="btn btn-success mb-3" type="submit" [disabled]="loading">Create your account</button>
+            </form>
+		</tab>
+	</tabset>
+</div>
+
+<!-- Button trigger modal -->
+
+<button #modelTrigger type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+  
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm Your Email</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        Confirmation link is been send to your email check it out
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-primary" data-bs-dismiss="modal" routerLink="/login">Ok</a>
+    </div>
+    </div>
+</div>
+</div>

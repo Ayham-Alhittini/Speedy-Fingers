@@ -1,0 +1,32 @@
+<div class="board">
+    
+    <div *ngIf="!winner">
+        {{user?.username}}
+        <div class="progress"><div class="circle"></div><div [style.left.px]="yourProgress" style="background-color: green;"  class="circle progress-tracker"></div>- - - - - - - - - - - - - - - - - - - - - - - - -
+            - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            - - - - - - - - - - - - - - - - - - - - - - - - -<div class="circle"></div></div>
+
+        {{otherUser}}
+        <div class="progress"><div class="circle"></div><div [style.left.px]="opponentProgress" style="background-color: lightgray"  class="circle progress-tracker"></div>- - - - - - - - - - - - - - - - - - - - - - - - -
+            - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            - - - - - - - - - - - - - - - - - - - - - - - - -<div class="circle"></div></div>
+
+        <app-multiplayer-typing-test (make-progress)="progressIncreased()"></app-multiplayer-typing-test>
+    </div>
+
+
+    <div class="game-container" *ngIf="winner">
+        <div class="game-finsh text-center" [ngStyle]="{ color: winner === user?.username ? 'white' : 'red',
+         fontSize: '20px', 
+         fontWeight: 'bold',
+         backgroundColor: winner === user?.username ? 'lightgreen' : 'lightgray',
+        }">
+
+            <span *ngIf="winner === user?.username">You Won</span>
+            <span *ngIf="winner === otherUser">You Lose</span>
+        </div>
+    </div>
+    
+</div>

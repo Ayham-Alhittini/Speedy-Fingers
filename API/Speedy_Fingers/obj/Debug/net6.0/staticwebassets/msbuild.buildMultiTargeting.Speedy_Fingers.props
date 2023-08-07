@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Speedy_Fingers.props" />
+</Project>

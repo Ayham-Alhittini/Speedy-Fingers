@@ -1,0 +1,122 @@
+<div class="row">
+    <h2><span class="text-secondary">User: </span> {{profile?.userName}}</h2>
+    <hr>
+    <div class="col-sm-6">
+        <table class="table table-condensed table-striped" id="profile-data-table">
+            <thead>
+                <tr><th colspan="2">User details</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td>User ID</td>
+                      <td id="user-id">{{profile?.id}}</td>
+                </tr>
+                <tr>
+                    <td>member since</td>
+                      <td *ngIf="profile?.memberSince">{{profile.memberSince | timeago}}</td>
+                  </tr>
+                <tr>
+                      <td>Keyboard Layout</td>
+                      <td>
+                        <select id="keyboard-layout" (change)="updateKeyboardLayout()" [(ngModel)]="selectedLayout">
+                          <option *ngFor="let layout of keyboardLayouts"  [selected]="layout === profile?.keyboardLayout">
+                            {{layout}}
+                          </option>
+                        </select>
+                      </td>
+                </tr>
+                <tr>
+                      <td>Words typed</td>
+                      <td>{{profile?.typedWords}}</td>
+                </tr>
+                <tr>
+                      <td>Tests taken</td>
+                      <td>{{profile?.takenTests}}</td>
+                  </tr>
+                  <tr>
+                      <td>Competitions taken</td>
+                      <td>{{profile?.competitionsTaken}} <span style="color: #C96800;" title="Competitions won">({{profile?.competitionsWon}})</span></td>
+                </tr>
+              </tbody>
+        </table>
+        <div class="accordion mb-5" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Change Password
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+
+                  <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+                    <div class="mb-3">
+                        <label for="">Current Password</label>
+                        <input type="{{passwordShown ? 'text' : 'password'}}" class="form-control invalid" placeholder="current password"
+                        formControlName="currentPassword"
+                        [class.is-invalid]="changePasswordForm.controls['currentPassword'].invalid && changePasswordForm.controls['currentPassword'].touched"
+                        >
+                        <div class="invalid-feedback">
+                          current password required
+                        </div>
+                      </div>
+    
+                      <div class="mb-3">
+                        <label for="">New Password</label>
+                        <input type="{{passwordShown ? 'text' : 'password'}}" class="form-control" placeholder="new password"
+                        formControlName="newPassword"
+                        [class.is-invalid]="changePasswordForm.controls['newPassword'].invalid && changePasswordForm.controls['newPassword'].touched"
+                        >
+                        <div class="invalid-feedback" *ngIf="changePasswordForm.controls['newPassword'].hasError('required')">
+                          new password required
+                        </div>
+                        <div class="invalid-feedback" *ngIf="changePasswordForm.controls['newPassword'].hasError('pattern')">
+                          Weak Password
+                        </div>
+                      </div>
+    
+                      <div class="mb-3">
+                        <label for="">Confirm New Password</label>
+                        <input type="{{passwordShown ? 'text' : 'password'}}" class="form-control" placeholder="confirm new password" 
+                        formControlName="confirmNewPassword"
+                        [class.is-invalid]="changePasswordForm.controls['confirmNewPassword'].invalid && changePasswordForm.controls['confirmNewPassword'].touched"
+                        >
+                        <div class="invalid-feedback" *ngIf="changePasswordForm.controls['confirmNewPassword'].hasError('notMatching')">Not mattching</div>
+                        <div class="invalid-feedback" *ngIf="changePasswordForm.controls['confirmNewPassword'].hasError('required')">Not mattching</div>
+                      </div>
+
+                      <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" (change)="showPaswords()" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Show Password
+                        </label>
+                      </div>
+                      <button class="btn btn-success" type="submit" [disabled]="changePasswordForm.invalid">Change Password</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="col-sm-6">
+      <table class="table table-striped">
+        <thead>
+          <th>WPM Statics</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lowest WPM</td>
+            <td class="text-warning" >{{profile?.lowestWPM > 0 ? profile?.lowestWPM : 0}} WPM</td>
+          </tr>
+          <tr>
+            <td>Average WPM</td>
+            <td class="text-success">{{profile?.sumWPM * 1.0 / profile?.takenTests ? (profile?.sumWPM * 1.0 / profile?.takenTests | floor) : 0}} WPM</td>
+          </tr>
+          <tr>
+            <td>Heighest WPM</td>
+            <td class="text-danger" >{{profile?.highestWPM}} WPM</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

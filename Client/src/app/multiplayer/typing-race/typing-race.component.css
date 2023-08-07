@@ -1,0 +1,45 @@
+.board {
+    width: 80vw;
+    height: 80vh;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.circle {
+  width: 15px;;
+  height: 15px;;
+  border: 1px #2699fb solid;
+  border-radius: 50%;
+}
+
+.progress {
+  display: flex;
+  position: relative;
+  align-items: center;
+  color: #2699fb;
+  width: 1000px;
+  background: white;
+  margin-bottom: 50px;
+}
+.progress-tracker {
+  position: absolute;
+}
+
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 100%;
+}
+.game-finsh {
+  border: 10px solid;
+  border-radius: 50%;
+  width: 400px;
+  height: 400px;
+}
+
+.game-finsh span {
+  font-size: 120px;
+}

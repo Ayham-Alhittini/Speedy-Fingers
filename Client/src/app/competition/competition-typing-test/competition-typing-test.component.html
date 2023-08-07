@@ -1,0 +1,39 @@
+<div class="container" style="width: 900px;">
+    <div class="words" *ngIf="testActive">
+        <p id="line-1">
+            <span *ngFor="let word of boardLine1; let idx = index" 
+                class="me-2 line-1-childs" 
+                [class.current-word]="idx === currentWord"
+                [class.bg-danger]="idx === wrongHint"
+                id="{{idx}}" 
+            >{{word}}</span>
+        </p>
+        <p>
+            <span *ngFor="let word of boardLine2" class="me-2">{{word}}</span>
+        </p>
+    </div>
+
+
+    <div class="d-flex mt-3" style="justify-content: center;" id="user-input">
+        <input type="text"
+        class="form-control w-50"
+        (keyup)="onInputChange($event)"
+        [(ngModel)]="inputContent"
+        >
+        <p id="timer">{{second === 60 ? '1:00' : '0:' + getTime(second)}}</p>
+        <button id="refresh" class="btn btn-primary" (click)="restartTest()"><i class="fa-solid fa-arrows-rotate"></i></button>
+    </div>
+
+    <div id="result-container" *ngIf="result.dirty">
+        <h5 id="result-heading">Result</h5>
+        <table class="table table-striped" id="result-table">
+            <tbody>
+                <tr><td id="wpm" class="name" colspan="2" title="Words per Minute: 1 word equals 5 keystrokes"><strong>{{result.wpm}} WPM</strong><small>(words per minute)</small></td></tr>
+                <tr id="keystrokes"><td class="name">Keystrokes</td><td class="value"><small>(<span class="correct">{{result.keystrokesCorrect}}</span> | <span class="wrong">{{result.keystrokesWrong}}</span>)</small>&nbsp;{{result.keystrokesWrong + result.keystrokesCorrect}}</td></tr>
+                <tr id="accuracy"><td class="name">Accuracy</td><td class="value"> <strong>{{result.accuracy | percent}}</strong></td></tr>
+                <tr id="correct"><td class="name">Correct words</td><td class="value"> <strong>{{result.correctWords}} </strong></td></tr>
+                <tr id="wrong"><td class="name">Wrong words</td><td class="value"> <strong>{{result.wrongWords}} </strong></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
