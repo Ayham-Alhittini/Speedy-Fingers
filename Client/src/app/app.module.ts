@@ -21,6 +21,7 @@ import { CompetitionTypingTestComponent } from './competition/competition-typing
 import { MultiplayerComponent } from './multiplayer/multiplayer.component';
 import { MultiplayerTypingTestComponent } from './multiplayer/typing-race/multiplayer-typing-test/multiplayer-typing-test.component';
 import { TypingRaceComponent } from './multiplayer/typing-race/typing-race.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { TypingRaceComponent } from './multiplayer/typing-race/typing-race.compo
     CompetitionTypingTestComponent,
     MultiplayerComponent,
     MultiplayerTypingTestComponent,
-    TypingRaceComponent
+    TypingRaceComponent,
+    ServerErrorComponent
   ],
   imports: [
     BrowserModule,

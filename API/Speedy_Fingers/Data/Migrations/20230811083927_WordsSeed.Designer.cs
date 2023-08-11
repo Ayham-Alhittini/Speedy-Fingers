@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Speedy_Fingers.Data;
 
@@ -11,9 +12,11 @@ using Speedy_Fingers.Data;
 namespace User.Management.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230811083927_WordsSeed")]
+    partial class WordsSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -314,22 +317,6 @@ namespace User.Management.API.Migrations
                     b.HasKey("Name");
 
                     b.ToTable("Groups");
-                });
-
-            modelBuilder.Entity("Speedy_Fingers.Entities.Matche", b =>
-                {
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConnectionId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EnrollTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("UserName");
-
-                    b.ToTable("Matches");
                 });
 
             modelBuilder.Entity("Speedy_Fingers.Entities.Word", b =>

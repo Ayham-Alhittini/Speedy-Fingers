@@ -16,7 +16,7 @@ namespace Speedy_Fingers.Data
         public DbSet<CompetitionRanking> Rankings { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Connection> Connections { get; set; }
-
+        public DbSet<Matche> Matches { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit, OnDestroy{
             this.setIndex(1);
           } else if (url === '/advance-typing-test') {
             this.setIndex(2);
-          } else if (url.indexOf('/multiplayer') !== -1) {
+          } else if (url.indexOf('/multiplayer') !== -1 || url === '/server-error') {
             this.setIndex(3);
           } else if (url === '/competition') {
             this.setIndex(4);

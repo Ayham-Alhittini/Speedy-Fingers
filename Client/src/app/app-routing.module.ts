@@ -7,6 +7,7 @@ import { CompetitionComponent } from './competition/competition.component';
 import { LoadCompetitionResolver } from './resolvers/load-competition.resolver';
 import { MultiplayerComponent } from './multiplayer/multiplayer.component';
 import { TypingRaceComponent } from './multiplayer/typing-race/typing-race.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
 
 const routes: Routes = [
   {path : '', component : TypingTestComponent},
@@ -18,6 +19,8 @@ const routes: Routes = [
   {path: 'competition', component: CompetitionComponent, resolve: {competition: LoadCompetitionResolver}},
   {path: 'multiplayer', component: MultiplayerComponent},
   {path: 'multiplayer/typing-race', component: TypingRaceComponent},
+  {path : 'server-error', component : ServerErrorComponent},
+  {path : '**', component : TypingTestComponent},
 ];
 
 @NgModule({

@@ -1,37 +1,40 @@
+<ng-container *ngIf="!loading">    
+    <div class="words prevent-selection" *ngIf="testActive">
+        <p>
+            <span *ngFor="let word of boardLine1; let idx = index" 
+                class="me-2 current-word" 
+                [class.current-word]="idx === currentWord"
+                [class.wrong-hint]="idx === wrongHint"
+                id="{{idx}}" 
+            >{{word}}</span>
+        </p>
+        <p>
+            <span *ngFor="let word of boardLine2" class="me-2">{{word}}</span>
+        </p>
+    </div>
 
-<div class="words" *ngIf="testActive">
-    <p>
-        <span *ngFor="let word of boardLine1; let idx = index" 
-            class="me-2 current-word" 
-            [class.current-word]="idx === currentWord"
-            [class.wrong-hint]="idx === wrongHint"
-            id="{{idx}}" 
-        >{{word}}</span>
-    </p>
-    <p>
-        <span *ngFor="let word of boardLine2" class="me-2">{{word}}</span>
-    </p>
-</div>
 
+    <div class="d-flex mt-3" style="justify-content: center;" id="user-input">
+        <input type="text"
+        class="form-control w-50 me-5"
+        (keyup)="onInputChange($event)"
+        [(ngModel)]="inputContent"
+        >
+        <button class="btn btn-primary">New Game</button>
+    </div>
 
-<div class="d-flex mt-3" style="justify-content: center;" id="user-input">
-    <input type="text"
-    class="form-control w-50 me-5"
-    (keyup)="onInputChange($event)"
-    [(ngModel)]="inputContent"
-    >
-    <button class="btn btn-primary">New Game</button>
-</div>
+    <div id="result-container" *ngIf="result.dirty">
+        <h5 id="result-heading">Result</h5>
+        <table class="table table-striped" id="result-table">
+            <tbody>
+                <tr><td id="wpm" class="name" colspan="2" title="Words per Minute: 1 word equals 5 keystrokes"><strong>{{result.wpm}} WPM</strong><small>(words per minute)</small></td></tr>
+                <tr id="keystrokes"><td class="name">Keystrokes</td><td class="value"><small>(<span class="correct">{{result.keystrokesCorrect}}</span> | <span class="wrong">{{result.keystrokesWrong}}</span>)</small>&nbsp;{{result.keystrokesWrong + result.keystrokesCorrect}}</td></tr>
+                <tr id="accuracy"><td class="name">Accuracy</td><td class="value"> <strong>{{result.accuracy | percent}}</strong></td></tr>
+                <tr id="correct"><td class="name">Correct words</td><td class="value"> <strong>{{result.correctWords}} </strong></td></tr>
+                <tr id="wrong"><td class="name">Wrong words</td><td class="value"> <strong>{{result.wrongWords}} </strong></td></tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
 
-<div id="result-container" *ngIf="result.dirty">
-    <h5 id="result-heading">Result</h5>
-    <table class="table table-striped" id="result-table">
-        <tbody>
-            <tr><td id="wpm" class="name" colspan="2" title="Words per Minute: 1 word equals 5 keystrokes"><strong>{{result.wpm}} WPM</strong><small>(words per minute)</small></td></tr>
-            <tr id="keystrokes"><td class="name">Keystrokes</td><td class="value"><small>(<span class="correct">{{result.keystrokesCorrect}}</span> | <span class="wrong">{{result.keystrokesWrong}}</span>)</small>&nbsp;{{result.keystrokesWrong + result.keystrokesCorrect}}</td></tr>
-            <tr id="accuracy"><td class="name">Accuracy</td><td class="value"> <strong>{{result.accuracy | percent}}</strong></td></tr>
-            <tr id="correct"><td class="name">Correct words</td><td class="value"> <strong>{{result.correctWords}} </strong></td></tr>
-            <tr id="wrong"><td class="name">Wrong words</td><td class="value"> <strong>{{result.wrongWords}} </strong></td></tr>
-        </tbody>
-    </table>
-</div>
+<div class="blink loading-state" *ngIf="loading">Loading...</div>

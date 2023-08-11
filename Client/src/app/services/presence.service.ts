@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject, take } from 'rxjs';
@@ -17,6 +17,10 @@ export class PresenceService {
   private hubConnection: HubConnection;
   private onlineUsersSource = new BehaviorSubject<string[]>([]);
   onlineUsers$ = this.onlineUsersSource.asObservable();
+
+
+  inviteAcceptedEmitter = new EventEmitter<string>();
+
   constructor(private toaster: ToastrService, private router: Router) { }
 
   createHubConnection(user : User) {
@@ -63,15 +67,16 @@ export class PresenceService {
       .pipe(take(1))
       .subscribe({
         next: () => {
-          this.hubConnection?.invoke('InviteAccepted', username).then()
+          this.hubConnection?.invoke('InviteAccepted', username).then(() => {
+            this.router.navigateByUrl('/multiplayer/typing-race?user=' + username);
+          })
             .catch(error => console.log(error));
-          this.router.navigateByUrl('/multiplayer/typing-race?user=' + username);
         }
       })
     });
 
     this.hubConnection.on('InviteAccepted', username => {
-      this.router.navigateByUrl('/multiplayer/typing-race?user=' + username);
+      this.inviteAcceptedEmitter.emit(username);
     });
   }
 
@@ -82,6 +87,9 @@ export class PresenceService {
 
 
   stopHubConnection() {
-    this.hubConnection.stop().catch(error => console.log(error));
+    if (this.hubConnection)
+    {
+      this.hubConnection.stop().catch(error => console.log(error));
+    }
   }
 }

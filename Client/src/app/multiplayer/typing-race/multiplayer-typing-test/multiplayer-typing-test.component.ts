@@ -25,8 +25,9 @@ export class MultiplayerTypingTestComponent implements OnInit{
       }
     });
   }
+
   words: string[] = [];
-  
+  loading = false;
   MAX_LINE_PIXELs_LENGTH = 910;
   
   
@@ -57,29 +58,9 @@ export class MultiplayerTypingTestComponent implements OnInit{
   testActive = true;
 
   ngOnInit(): void {
+    this.loading = true;
     this.getWords();
-    this.wordsGeneratorService.changeLevel.subscribe({
-      next : () => {
-        this.restartTest();
-      }
-    })
-  }
-
-  restartTest() {
-    this.userCount = {
-      wrongWords: 0,
-      correctWords: 0,
-      keystrokesCorrect: 0,
-      keystrokesWrong: 0
-    };
-
-    this.testActive = true;
-    this.currentWord = 0;
-    this.wrongHint = -1
-    this.inputContent = '';
-    this.boardLine1.splice(0);
-    this.boardLine2.splice(0);
-    this.getWords();
+    this.loading = false;
   }
 
   onInputChange(e: KeyboardEvent) {

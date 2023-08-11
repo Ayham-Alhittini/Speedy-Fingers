@@ -69,12 +69,13 @@ export class TypingRaceComponent implements OnInit, OnDestroy {
     this.yourProgress += this.gameService.MAX_PROGRESS_PIXELS_LENGTH / this.gameService.WORDS_LENGTH;
     this.yourProgress = Math.min(this.yourProgress, 982);
     if (this.otherUser) {
-      this.gameService.ProgressTrigger(this.otherUser).then()
+      this.gameService.ProgressTrigger(this.otherUser).then(() => {
+        this.yourWordsCount += 1;
+        if (this.yourWordsCount === this.gameService.WORDS_LENGTH) {
+          this.GameFinsh(this.user.username);
+        }
+      })
       .catch(err => console.log(err));
-    }
-    this.yourWordsCount += 1;
-    if (this.yourWordsCount === this.gameService.WORDS_LENGTH) {
-      this.GameFinsh(this.user.username);
     }
   }
 

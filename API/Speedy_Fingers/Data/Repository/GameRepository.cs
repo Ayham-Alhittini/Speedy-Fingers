@@ -16,6 +16,11 @@ namespace Speedy_Fingers.Data.Repository
             _context.Groups.Add(group);
         }
 
+        public async Task<bool> CheckGroupConnections(string groupName)
+        {
+            return await _context.Connections.CountAsync(con => con.GroupName == groupName) > 1;
+        }
+
         public async Task<Connection> GetConnection(string connectionId)
         {
             return await _context.Connections.Where(con => con.ConnectionId == connectionId)

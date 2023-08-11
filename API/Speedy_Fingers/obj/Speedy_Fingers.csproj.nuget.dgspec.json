@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Speedy_Fingers API\\Speedy_Fingers\\Speedy_Fingers.csproj": {}
+    "D:\\Speedy-Fingers\\API\\Speedy_Fingers\\Speedy_Fingers.csproj": {}
   },
   "projects": {
-    "D:\\Speedy_Fingers API\\Speedy_Fingers\\Speedy_Fingers.csproj": {
+    "D:\\Speedy-Fingers\\API\\Speedy_Fingers\\Speedy_Fingers.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Speedy_Fingers API\\Speedy_Fingers\\Speedy_Fingers.csproj",
+        "projectUniqueName": "D:\\Speedy-Fingers\\API\\Speedy_Fingers\\Speedy_Fingers.csproj",
         "projectName": "Speedy_Fingers",
-        "projectPath": "D:\\Speedy_Fingers API\\Speedy_Fingers\\Speedy_Fingers.csproj",
+        "projectPath": "D:\\Speedy-Fingers\\API\\Speedy_Fingers\\Speedy_Fingers.csproj",
         "packagesPath": "C:\\Users\\ayham\\.nuget\\packages\\",
-        "outputPath": "D:\\Speedy_Fingers API\\Speedy_Fingers\\obj\\",
+        "outputPath": "D:\\Speedy-Fingers\\API\\Speedy_Fingers\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ayham\\AppData\\Roaming\\NuGet\\NuGet.Config",

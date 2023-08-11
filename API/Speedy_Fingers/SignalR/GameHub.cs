@@ -26,7 +26,11 @@ namespace Speedy_Fingers.SignalR
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
             await AddToGroup(groupName);
 
-
+            if (await _gameRepository.CheckGroupConnections(groupName))
+            {
+                var words = await _generateWordRepository.WordsGenerator("easy", 50);
+                await Clients.Group(groupName).SendAsync("ReciveWords", words);
+            }
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
@@ -59,23 +63,15 @@ namespace Speedy_Fingers.SignalR
         private async Task<bool> AddToGroup(string groupName)
         {
             var group = await _gameRepository.GetGroup(groupName);
+            ///check if two users exit
+            
             var connection = new Connection(Context.ConnectionId, Context.User.GetUsername());
             if (group == null)
             {
                 group = new Group(groupName);
                 _gameRepository.AddGroup(group);
             }
-
             group.Connections.Add(connection);
-
-            ///check if two users exit
-            
-            if (group.Connections.Count > 1)
-            {
-                var words = await _generateWordRepository.WordsGenerator("easy", 50);
-                await Clients.Group(groupName).SendAsync("ReciveWords", words);
-            }
-
             return await _gameRepository.SaveChanges();
         }
 

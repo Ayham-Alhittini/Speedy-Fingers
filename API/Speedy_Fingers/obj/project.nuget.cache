@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Z/uMvSLAZKJiNUeC76TzamlEwWOL/PkQIOlAJTnT1ckqiBX4KT9APs4+PwGWEILom6Ep7iDlRHMC9myrCzsWvQ==",
+  "dgSpecHash": "HanPEcb9F0oQHSn/ka2ruVHJyXg9Cnm4bXPy2zlGy2Sbr8s0ND/r9RfNBnhRDPNdp3Hpf8Of/dSXOwq93IZcHQ==",
   "success": true,
-  "projectFilePath": "D:\\Speedy_Fingers API\\Speedy_Fingers\\Speedy_Fingers.csproj",
+  "projectFilePath": "D:\\Speedy-Fingers\\API\\Speedy_Fingers\\Speedy_Fingers.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ayham\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\ayham\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

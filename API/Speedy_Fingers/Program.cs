@@ -148,6 +148,7 @@ app.MapControllers();
 
 app.MapHub<GameHub>("hubs/game");
 app.MapHub<PresenceHub>("hubs/presence");
+app.MapHub<MatchesHub>("hubs/matches");
 
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
@@ -158,6 +159,7 @@ try
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
     await context.Database.MigrateAsync();
     await context.Database.ExecuteSqlRawAsync("DELETE FROM [Connections]");
+    await context.Database.ExecuteSqlRawAsync("DELETE FROM [Matches]");
     await Seed.SeedUsers(userManager, roleManager);
 }
 catch { }

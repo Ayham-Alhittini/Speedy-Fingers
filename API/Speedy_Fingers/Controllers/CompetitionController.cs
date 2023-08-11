@@ -8,7 +8,6 @@ using Speedy_Fingers.DTOs;
 using Speedy_Fingers.Entities;
 using Speedy_Fingers.Extensions;
 using Speedy_Fingers.Interfaces;
-using System.Runtime.CompilerServices;
 
 namespace Speedy_Fingers.Controllers
 {
@@ -20,9 +19,6 @@ namespace Speedy_Fingers.Controllers
 
         const int CompetitionStartTime = 9;
         const int CompetitionEndTime = 15;
-
-        //const int CompetitionStartTime = 8;
-        //const int CompetitionEndTime = 9;
 
 
 
@@ -37,7 +33,12 @@ namespace Speedy_Fingers.Controllers
         [HttpGet("last-competition-result")]
         public async Task<ActionResult> LastCompetitionResult()
         {
+            if (!await _context.Rankings.AnyAsync())
+            {
+                return Ok(new List<CompetitionRankingDto>());
+            }
             int lastCompetitionId = _context.Rankings.Max(x => x.CompetitionId);
+
 
             var query = _context.Rankings.Where(r => r.CompetitionId == lastCompetitionId).OrderByDescending(r => r.WPM)
                 .AsQueryable();

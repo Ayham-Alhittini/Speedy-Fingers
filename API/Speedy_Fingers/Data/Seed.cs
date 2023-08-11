@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Speedy_Fingers.Entities;
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json;
 
 namespace Speedy_Fingers.Data

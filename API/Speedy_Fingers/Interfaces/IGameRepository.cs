@@ -10,6 +10,7 @@ namespace Speedy_Fingers.Interfaces
         Task<Connection> GetConnection(string connectionId);
         Task<Connection> GetConnectionByName(string UserName);
         Task<Group> GetGroup(string groupName);
+        Task<bool> CheckGroupConnections(string groupName);
         Task<bool> SaveChanges();
     }
 }

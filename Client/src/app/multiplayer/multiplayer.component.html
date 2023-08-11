@@ -5,12 +5,13 @@
             <input type="search" class="form-control" (input)="onSearchInputChange($event.target)">
         </div>
         <div class="col-3">
-            <button class="btn btn-info">auto-match</button>
+            <button class="btn btn-info" *ngIf="!searchForMatches" (click)="findMatches()">Find Match</button>
+            <button class="btn btn-danger" *ngIf="searchForMatches" (click)="cancelMatchesSearch()">Cancel</button>
         </div>
     </div>
     <div class="row">
-        
-        <div class="col-4">
+        <hr>
+        <div class="col-4" *ngIf="onlineUsers.length > 0 && !searchForMatches">
             <ul class="list-group">
                 <li class="list-group-item mb-2" *ngFor="let member of onlineUsers">
                     <div class="d-flex justify-content-between align-items-center">
@@ -19,7 +20,11 @@
                     </div>
                 </li>
             </ul>
-
         </div>
+        <h4 *ngIf="onlineUsers.length === 0 && !searchForMatches" class="text-danger text-center">No presence users</h4>
+        <div class="col-12 timer" *ngIf="searchForMatches">
+            <span>{{searchTimerCount}}</span>
+        </div>
+
     </div>
 </div>
