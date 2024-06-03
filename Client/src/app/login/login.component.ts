@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, NG_ASYNC_VALIDATORS, NgForm, V
 import { AccountService } from '../services/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,6 @@ import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
 export class LoginComponent implements OnInit{
 
   @ViewChild('authTabs', {static: true})authTabs: TabsetComponent;
-  @ViewChild('modelTrigger', {static: true})modelTrigger: ElementRef;
 
   loading = false;
   passwordShown = false;
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit{
   constructor(private accountService: AccountService,
     private router: Router,
     private route: ActivatedRoute,
+    private toaster: ToastrService,
     private fb: FormBuilder){}
 
   registerForm: FormGroup;
@@ -61,8 +62,7 @@ export class LoginComponent implements OnInit{
 
   loginSubmit(loginForm: NgForm) {
       this.accountService.login(loginForm.value).subscribe({
-        next: response => {
-          this.accountService.setCurrentUser(response);
+        next: () => {
           this.router.navigateByUrl("/");
         }
       });
@@ -79,8 +79,9 @@ export class LoginComponent implements OnInit{
     this.loading = true;
     this.accountService.register(this.registerForm.value).subscribe({
       next: () => {
-        this.modelTrigger.nativeElement.click();
         this.loading = false;
+        this.toaster.success("Account created successfully");
+        this.router.navigateByUrl("/");
       }, error: () => this.loading = false
       
     })

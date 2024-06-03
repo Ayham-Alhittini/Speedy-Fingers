@@ -17,8 +17,8 @@ namespace Speedy_Fingers.Controllers
         private readonly DataContext _context;
         private readonly IMapper _mapper;
 
-        const int CompetitionStartTime = 9;
-        const int CompetitionEndTime = 15;
+        private const int CompetitionStartTime = 13;
+        private const int CompetitionEndTime = 14;
 
 
 

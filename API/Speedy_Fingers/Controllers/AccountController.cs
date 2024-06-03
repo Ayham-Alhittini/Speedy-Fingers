@@ -86,13 +86,12 @@ namespace Speedy_Fingers.Controllers
                 return BadRequest(roleResult.Errors);
             }
 
-            ///add token to verify email
-            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            var confirmationLink = Url.Action(nameof(ConfirmEmail), "Account", new { token, email = user.Email });
-            var message = new EmailMessage(new string[] { user.Email! }, "Confirmation email link", GetUrl() + confirmationLink!);
-            _emailService.SendEmail(message);
-
-            return Ok();
+            return Ok(new UserDto
+            {
+                Token = await _tokenService.CreateToken(user),
+                Username = registerUser.Username,
+                Email = registerUser.Email
+            });
         }
 
 
